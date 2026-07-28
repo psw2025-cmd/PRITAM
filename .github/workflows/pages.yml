@@ -17,67 +17,55 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Configure Pages
-        id: pages
         uses: actions/configure-pages@v5
 
-      - name: Validate source files
-        shell: bash
-        run: |
-          set -euo pipefail
-          test -s index.html
-          test -s resume.html
-          test -s styles.css
-          test -s contact.vcf
-          echo "Required website source files are present."
+      - name: Validate authoritative CV content and website source
+        run: python scripts/validate_site.py
 
-      - name: Build downloadable PDF and Word CV
-        shell: bash
+      - name: Install document and image tools
         run: |
-          set -euo pipefail
           sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends pandoc
+          sudo apt-get install -y --no-install-recommends pandoc librsvg2-bin
 
+      - name: Build PDF, Word CV and social image
+        shell: bash
+        run: |
+          set -euo pipefail
           CHROME_BIN="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
           test -n "${CHROME_BIN}"
-
-          python3 -m http.server 8000 >/tmp/pritam-profile-server.log 2>&1 &
+          python3 -m http.server 8000 >/tmp/profile-server.log 2>&1 &
           SERVER_PID=$!
           trap 'kill "${SERVER_PID}" 2>/dev/null || true' EXIT
-
           for i in {1..30}; do
-            if curl -fsS http://127.0.0.1:8000/resume.html >/dev/null; then
-              break
-            fi
+            if curl -fsS http://127.0.0.1:8000/resume.html >/dev/null; then break; fi
             sleep 1
           done
           curl -fsS http://127.0.0.1:8000/resume.html >/dev/null
+          "${CHROME_BIN}" --headless=new --no-sandbox --disable-gpu --print-to-pdf="${GITHUB_WORKSPACE}/Pritam_Warghade_Global_Piping_CV_2026.pdf" http://127.0.0.1:8000/resume.html
+          pandoc resume.html --from=html --to=docx --metadata title="Pritam S. Warghade - Lead / Senior Piping Engineer" --metadata author="Pritam S. Warghade" --output=Pritam_Warghade_Global_Piping_CV_2026.docx
+          cp Pritam_Warghade_Global_Piping_CV_2026.pdf Pritam_Warghade_Public_CV.pdf
+          cp Pritam_Warghade_Global_Piping_CV_2026.docx Pritam_Warghade_Public_CV.docx
+          rsvg-convert -w 1200 -h 630 og-card.svg -o og-card.png
+          test -s Pritam_Warghade_Global_Piping_CV_2026.pdf
+          test -s Pritam_Warghade_Global_Piping_CV_2026.docx
+          test -s og-card.png
 
-          "${CHROME_BIN}" --headless=new --no-sandbox --disable-gpu --print-to-pdf="${GITHUB_WORKSPACE}/Pritam_Warghade_Public_CV.pdf" http://127.0.0.1:8000/resume.html
+      - name: Validate generated downloads
+        run: python scripts/validate_site.py --require-generated
 
-          pandoc resume.html --from=html --to=docx --metadata title="Pritam Warghade - Lead / Senior Piping Engineer" --output=Pritam_Warghade_Public_CV.docx
-
-          test -s Pritam_Warghade_Public_CV.pdf
-          test -s Pritam_Warghade_Public_CV.docx
-
-      - name: Assemble Pages site
+      - name: Assemble clean Pages artifact
         shell: bash
         run: |
           set -euo pipefail
           rm -rf _site
           mkdir -p _site
-
-          cp index.html resume.html styles.css 404.html favicon.svg og-card.svg robots.txt sitemap.xml site.webmanifest contact.vcf Pritam_Warghade_Public_CV.pdf Pritam_Warghade_Public_CV.docx _site/
-
-          test -s _site/index.html
-          test -s _site/Pritam_Warghade_Public_CV.pdf
-          test -s _site/Pritam_Warghade_Public_CV.docx
-
-          echo "Final Pages artifact contents:"
+          cp index.html resume.html styles.css 404.html favicon.svg og-card.svg og-card.png contact-qr.svg robots.txt sitemap.xml feed.xml llms.txt site.webmanifest contact.vcf profile.json resume.txt site-validation-report.json Pritam_Warghade_Global_Piping_CV_2026.pdf Pritam_Warghade_Global_Piping_CV_2026.docx Pritam_Warghade_Public_CV.pdf Pritam_Warghade_Public_CV.docx .nojekyll _site/
           find _site -maxdepth 1 -type f -printf '%f %s bytes\n' | sort
 
       - name: Upload GitHub Pages artifact
@@ -91,7 +79,32 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  verify-live:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: Verify live profile and downloads
+        env:
+          SITE_URL: ${{ needs.deploy.outputs.page_url }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="${SITE_URL%/}/"
+          for attempt in {1..12}; do
+            if curl -fsSL --max-time 30 "${base}" -o /tmp/index.html; then break; fi
+            sleep 10
+          done
+          grep -F "Pritam S. Warghade" /tmp/index.html
+          grep -F "Lead / Senior Piping Engineer" /tmp/index.html
+          curl -fsSL --max-time 30 "${base}resume.html" | grep -F "25+ years"
+          curl -fsSI --max-time 30 "${base}Pritam_Warghade_Global_Piping_CV_2026.pdf" | grep -Ei "HTTP/.* 200"
+          curl -fsSI --max-time 30 "${base}Pritam_Warghade_Global_Piping_CV_2026.docx" | grep -Ei "HTTP/.* 200"
+          curl -fsSL --max-time 30 "${base}contact.vcf" | grep -F "warghade2012@gmail.com"
+          echo "PASS: live profile, resume, PDF, Word CV and vCard verified at ${base}"
