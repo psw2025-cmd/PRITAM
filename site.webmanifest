@@ -1,0 +1,9 @@
+{
+  "name": "Pritam Warghade - Lead / Senior Piping Engineer",
+  "short_name": "Pritam Warghade",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f4f8fb",
+  "theme_color": "#0b2948",
+  "icons": [{"src":"favicon.svg","sizes":"any","type":"image/svg+xml"}]
+}
