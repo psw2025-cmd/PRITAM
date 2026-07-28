@@ -1,26 +1,14 @@
-# Pritam S. Warghade - Professional Recruiter Profile
+# Pritam S. Warghade - Public Recruiter Profile
 
-Public professional profile for **Lead / Senior Piping Engineer**, **Piping Layout**, and **Senior E3D / PDMS / SP3D Designer** opportunities.
+Public professional profile based on the authoritative CV uploaded on 28 July 2026.
 
-## Public contact
+- Profile: https://psw2025-cmd.github.io/PRITAM/
+- Phone / WhatsApp: +91 9172645866
+- Email: warghade2012@gmail.com
+- LinkedIn: https://www.linkedin.com/in/pritam-warghade-b8982414
 
-- **Phone / WhatsApp:** +91 9172645866
-- **Email:** warghade2012@gmail.com
-- **LinkedIn:** https://www.linkedin.com/in/pritam-warghade-b8982414
-- **Profile site:** https://psw2025-cmd.github.io/PRITAM/
+## Automated publishing and proof
 
-## Deployment
-
-GitHub Pages source is configured as **GitHub Actions**. Every push to `main` triggers the build and deployment workflow.
-
-## Included
-
-- Responsive recruiter landing page
-- Search-engine metadata and Schema.org Person data
-- Searchable HTML resume
-- Downloadable PDF and Word CV generated during deployment
-- Click-to-call, WhatsApp, email and LinkedIn actions
-- Downloadable vCard and contact QR code
-- GitHub Pages deployment workflow
+The GitHub Pages workflow validates all required source files, verifies internal links and public contact consistency, checks the PDF/DOCX signatures, assembles a clean `_site` artifact, deploys it, and then performs live HTTP checks against the profile, resume, PDF, Word CV and vCard. A daily health workflow re-checks the live site.
 
 Only professional contact and career information are published. Full address, date of birth, passport, Aadhaar/PAN, banking and family information are excluded.
