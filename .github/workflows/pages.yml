@@ -3,16 +3,18 @@ name: Deploy recruiter profile to GitHub Pages
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - "proof/live-deployment.json"
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -90,7 +92,13 @@ jobs:
     runs-on: ubuntu-latest
     needs: deploy
     steps:
+      - name: Checkout main for proof publication
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
       - name: Verify live profile and downloads
+        id: verify
         env:
           SITE_URL: ${{ needs.deploy.outputs.page_url }}
         shell: bash
@@ -107,4 +115,38 @@ jobs:
           curl -fsSI --max-time 30 "${base}Pritam_Warghade_Global_Piping_CV_2026.pdf" | grep -Ei "HTTP/.* 200"
           curl -fsSI --max-time 30 "${base}Pritam_Warghade_Global_Piping_CV_2026.docx" | grep -Ei "HTTP/.* 200"
           curl -fsSL --max-time 30 "${base}contact.vcf" | grep -F "warghade2012@gmail.com"
+          echo "site_url=${base}" >> "$GITHUB_OUTPUT"
           echo "PASS: live profile, resume, PDF, Word CV and vCard verified at ${base}"
+
+      - name: Commit live deployment proof
+        env:
+          SITE_URL: ${{ steps.verify.outputs.site_url }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p proof
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          proof = {
+              "status": "PASS",
+              "verified_at_utc": datetime.now(timezone.utc).isoformat(),
+              "site_url": os.environ["SITE_URL"],
+              "source_commit": os.environ["GITHUB_SHA"],
+              "workflow_run_id": os.environ["GITHUB_RUN_ID"],
+              "checks": {
+                  "profile_html": "PASS",
+                  "searchable_resume": "PASS",
+                  "pdf_download_http_200": "PASS",
+                  "docx_download_http_200": "PASS",
+                  "vcard_contact": "PASS"
+              }
+          }
+          open("proof/live-deployment.json", "w", encoding="utf-8").write(json.dumps(proof, indent=2) + "\n")
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add proof/live-deployment.json
+          git diff --cached --quiet && exit 0
+          git commit -m "proof: verify live recruiter profile [skip ci]"
+          git push origin HEAD:main
