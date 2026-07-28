@@ -1,0 +1,40 @@
+name: Recruiter profile health check
+
+on:
+  schedule:
+    - cron: "30 8 * * *"
+      timezone: "Asia/Kolkata"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate repository source
+        run: python scripts/validate_site.py
+      - name: Validate live recruiter profile
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://psw2025-cmd.github.io/PRITAM/"
+          curl -fsSL --retry 5 --retry-delay 10 --max-time 30 "${base}" -o /tmp/index.html
+          grep -F "Pritam S. Warghade" /tmp/index.html
+          grep -F "warghade2012@gmail.com" /tmp/index.html
+          curl -fsSL --retry 5 --max-time 30 "${base}resume.html" | grep -F "Lead / Senior Piping Engineer"
+          curl -fsSI --retry 5 --max-time 30 "${base}Pritam_Warghade_Global_Piping_CV_2026.pdf" | grep -Ei "HTTP/.* 200"
+          curl -fsSI --retry 5 --max-time 30 "${base}Pritam_Warghade_Global_Piping_CV_2026.docx" | grep -Ei "HTTP/.* 200"
+          echo "PASS: public recruiter profile and CV downloads are healthy"
+      - name: Upload validation proof
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: recruiter-profile-health-${{ github.run_id }}
+          path: site-validation-report.json
+          if-no-files-found: error
+          retention-days: 30
