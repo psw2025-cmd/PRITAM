@@ -1,0 +1,60 @@
+name: Deploy recruiter profile to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v6
+
+      - name: Build downloadable PDF and Word CV
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends pandoc
+          python3 -m http.server 8000 >/tmp/pritam-profile-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill ${SERVER_PID} 2>/dev/null || true' EXIT
+          for i in {1..20}; do
+            curl -fsS http://127.0.0.1:8000/resume.html >/dev/null && break
+            sleep 1
+          done
+          google-chrome --headless=new --no-sandbox --disable-gpu \
+            --print-to-pdf="${GITHUB_WORKSPACE}/Pritam_Warghade_Public_CV.pdf" \
+            http://127.0.0.1:8000/resume.html
+          pandoc resume.html \
+            --from=html --to=docx \
+            --metadata title="Pritam Warghade - Lead / Senior Piping Engineer" \
+            --output=Pritam_Warghade_Public_CV.docx
+          test -s Pritam_Warghade_Public_CV.pdf
+          test -s Pritam_Warghade_Public_CV.docx
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
