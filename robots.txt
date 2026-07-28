@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://psw2025-cmd.github.io/PRITAM/sitemap.xml
