@@ -15,17 +15,25 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v6
 
       - name: Configure Pages
-        uses: actions/configure-pages@v6
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Validate source files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s index.html
+          test -s resume.html
+          test -s styles.css
+          test -s contact.vcf
+          echo "Required website source files are present."
 
       - name: Build downloadable PDF and Word CV
         shell: bash
@@ -33,28 +41,57 @@ jobs:
           set -euo pipefail
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends pandoc
+
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
+          test -n "${CHROME_BIN}"
+
           python3 -m http.server 8000 >/tmp/pritam-profile-server.log 2>&1 &
           SERVER_PID=$!
-          trap 'kill ${SERVER_PID} 2>/dev/null || true' EXIT
-          for i in {1..20}; do
-            curl -fsS http://127.0.0.1:8000/resume.html >/dev/null && break
+          trap 'kill "${SERVER_PID}" 2>/dev/null || true' EXIT
+
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:8000/resume.html >/dev/null; then
+              break
+            fi
             sleep 1
           done
-          google-chrome --headless=new --no-sandbox --disable-gpu \
-            --print-to-pdf="${GITHUB_WORKSPACE}/Pritam_Warghade_Public_CV.pdf" \
-            http://127.0.0.1:8000/resume.html
-          pandoc resume.html \
-            --from=html --to=docx \
-            --metadata title="Pritam Warghade - Lead / Senior Piping Engineer" \
-            --output=Pritam_Warghade_Public_CV.docx
+          curl -fsS http://127.0.0.1:8000/resume.html >/dev/null
+
+          "${CHROME_BIN}" --headless=new --no-sandbox --disable-gpu --print-to-pdf="${GITHUB_WORKSPACE}/Pritam_Warghade_Public_CV.pdf" http://127.0.0.1:8000/resume.html
+
+          pandoc resume.html --from=html --to=docx --metadata title="Pritam Warghade - Lead / Senior Piping Engineer" --output=Pritam_Warghade_Public_CV.docx
+
           test -s Pritam_Warghade_Public_CV.pdf
           test -s Pritam_Warghade_Public_CV.docx
 
-      - name: Upload site artifact
+      - name: Assemble Pages site
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf _site
+          mkdir -p _site
+
+          cp index.html resume.html styles.css 404.html favicon.svg og-card.svg robots.txt sitemap.xml site.webmanifest contact.vcf Pritam_Warghade_Public_CV.pdf Pritam_Warghade_Public_CV.docx _site/
+
+          test -s _site/index.html
+          test -s _site/Pritam_Warghade_Public_CV.pdf
+          test -s _site/Pritam_Warghade_Public_CV.docx
+
+          echo "Final Pages artifact contents:"
+          find _site -maxdepth 1 -type f -printf '%f %s bytes\n' | sort
+
+      - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: .
+          path: _site
 
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
