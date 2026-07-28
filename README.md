@@ -9,6 +9,10 @@ Public professional profile for **Lead / Senior Piping Engineer**, **Piping Layo
 - **LinkedIn:** https://www.linkedin.com/in/pritam-warghade-b8982414
 - **Profile site:** https://psw2025-cmd.github.io/PRITAM/
 
+## Deployment
+
+GitHub Pages source is configured as **GitHub Actions**. Every push to `main` triggers the build and deployment workflow.
+
 ## Included
 
 - Responsive recruiter landing page
