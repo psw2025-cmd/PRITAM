@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "verified_at_utc": "2026-07-28T16:17:19.865567+00:00",
+  "site_url": "https://psw2025-cmd.github.io/PRITAM/",
+  "source_commit": "a573b0bdde3ee64b936edbcb80ae6027243b0d31",
+  "workflow_run_id": "30377440727",
+  "checks": {
+    "profile_html": "PASS",
+    "searchable_resume": "PASS",
+    "pdf_download_http_200": "PASS",
+    "docx_download_http_200": "PASS",
+    "vcard_contact": "PASS"
+  }
+}
