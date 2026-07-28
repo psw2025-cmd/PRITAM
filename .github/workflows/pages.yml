@@ -67,7 +67,8 @@ jobs:
           set -euo pipefail
           rm -rf _site
           mkdir -p _site
-          cp index.html resume.html styles.css 404.html favicon.svg og-card.svg og-card.png contact-qr.svg robots.txt sitemap.xml feed.xml llms.txt site.webmanifest contact.vcf profile.json resume.txt site-validation-report.json Pritam_Warghade_Global_Piping_CV_2026.pdf Pritam_Warghade_Global_Piping_CV_2026.docx Pritam_Warghade_Public_CV.pdf Pritam_Warghade_Public_CV.docx .nojekyll _site/
+          cp index.html resume.html styles.css 404.html favicon.svg og-card.svg og-card.png contact-qr.svg robots.txt sitemap.xml feed.xml llms.txt site.webmanifest contact.vcf profile.json resume.txt site-validation-report.json google178cff72412e32ac.html Pritam_Warghade_Global_Piping_CV_2026.pdf Pritam_Warghade_Global_Piping_CV_2026.docx Pritam_Warghade_Public_CV.pdf Pritam_Warghade_Public_CV.docx .nojekyll _site/
+          test "$(cat _site/google178cff72412e32ac.html)" = "google-site-verification: google178cff72412e32ac.html"
           find _site -maxdepth 1 -type f -printf '%f %s bytes\n' | sort
 
       - name: Upload GitHub Pages artifact
@@ -97,7 +98,7 @@ jobs:
         with:
           ref: main
 
-      - name: Verify live profile and downloads
+      - name: Verify live profile, downloads and Search Console file
         id: verify
         env:
           SITE_URL: ${{ needs.deploy.outputs.page_url }}
@@ -115,8 +116,9 @@ jobs:
           curl -fsSI --max-time 30 "${base}Pritam_Warghade_Global_Piping_CV_2026.pdf" | grep -Ei "HTTP/.* 200"
           curl -fsSI --max-time 30 "${base}Pritam_Warghade_Global_Piping_CV_2026.docx" | grep -Ei "HTTP/.* 200"
           curl -fsSL --max-time 30 "${base}contact.vcf" | grep -F "warghade2012@gmail.com"
+          curl -fsSL --max-time 30 "${base}google178cff72412e32ac.html" | grep -Fx "google-site-verification: google178cff72412e32ac.html"
           echo "site_url=${base}" >> "$GITHUB_OUTPUT"
-          echo "PASS: live profile, resume, PDF, Word CV and vCard verified at ${base}"
+          echo "PASS: live profile, resume, PDF, Word CV, vCard and Google Search Console verification file verified at ${base}"
 
       - name: Commit live deployment proof
         env:
@@ -139,7 +141,8 @@ jobs:
                   "searchable_resume": "PASS",
                   "pdf_download_http_200": "PASS",
                   "docx_download_http_200": "PASS",
-                  "vcard_contact": "PASS"
+                  "vcard_contact": "PASS",
+                  "google_search_console_file": "PASS"
               }
           }
           open("proof/live-deployment.json", "w", encoding="utf-8").write(json.dumps(proof, indent=2) + "\n")
