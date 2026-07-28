@@ -4,13 +4,20 @@ import argparse,hashlib,json,re,sys,zipfile
 ap=argparse.ArgumentParser(); ap.add_argument('--require-generated',action='store_true'); ap.add_argument('--root',default='.')
 a=ap.parse_args(); ROOT=Path(a.root).resolve()
 (ROOT/'site-validation-report.json').write_text('{}',encoding='utf-8')
-static=['index.html','resume.html','styles.css','contact.vcf','profile.json','resume.txt','robots.txt','sitemap.xml','feed.xml','llms.txt','site.webmanifest','favicon.svg','og-card.svg','contact-qr.svg']
+verification_file='google178cff72412e32ac.html'
+verification_text='google-site-verification: google178cff72412e32ac.html'
+static=['index.html','resume.html','styles.css','contact.vcf','profile.json','resume.txt','robots.txt','sitemap.xml','feed.xml','llms.txt','site.webmanifest','favicon.svg','og-card.svg','contact-qr.svg',verification_file]
 generated=['og-card.png','Pritam_Warghade_Global_Piping_CV_2026.pdf','Pritam_Warghade_Global_Piping_CV_2026.docx','Pritam_Warghade_Public_CV.pdf','Pritam_Warghade_Public_CV.docx']
 required=static+(generated if a.require_generated else [])
 errors=[]; report={'required_files':{},'internal_links':[],'checks':{'require_generated':a.require_generated}}
 for name in required:
  p=ROOT/name; ok=p.is_file() and p.stat().st_size>0; report['required_files'][name]={'exists':ok,'bytes':p.stat().st_size if p.exists() else 0}
  if not ok: errors.append(f'missing/empty: {name}')
+verification_path=ROOT/verification_file
+if verification_path.exists():
+ actual=verification_path.read_text(encoding='utf-8',errors='replace').strip()
+ report['checks']['google_site_verification_exact']=actual==verification_text
+ if actual!=verification_text: errors.append('Google Search Console verification file content mismatch')
 phone='+91 9172645866'; email='warghade2012@gmail.com'; canonical='https://psw2025-cmd.github.io/PRITAM/'
 for name in ['index.html','resume.html','profile.json','resume.txt','contact.vcf']:
  text=(ROOT/name).read_text(encoding='utf-8',errors='replace')
