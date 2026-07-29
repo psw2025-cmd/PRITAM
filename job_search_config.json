@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "search_locations": [
+    "Mumbai",
+    "Navi Mumbai",
+    "Thane",
+    "India",
+    "Middle East",
+    "United Arab Emirates",
+    "Saudi Arabia",
+    "Qatar",
+    "Oman",
+    "Kuwait"
+  ],
+  "role_query_groups": [
+    [
+      "Lead Piping Engineer",
+      "Senior Piping Engineer",
+      "Piping Area Lead"
+    ],
+    [
+      "Lead Piping Design Engineer",
+      "Senior Piping Design Engineer",
+      "Piping Layout Engineer"
+    ],
+    [
+      "Senior E3D Piping Designer",
+      "Senior PDMS Piping Designer",
+      "Senior SP3D Piping Designer"
+    ],
+    [
+      "Piping Design Checker",
+      "3D Model Coordinator",
+      "Site Piping Engineer"
+    ]
+  ],
+  "official_company_domains": {
+    "careers.worley.com": "Worley",
+    "jobs.technipenergies.com": "Technip Energies",
+    "woodplc.jobs": "Wood",
+    "careers.mcdermott.com": "McDermott",
+    "careers.kbr.com": "KBR",
+    "jobs.bechtel.com": "Bechtel",
+    "careers.larsentoubro.com": "Larsen & Toubro",
+    "careers.adnoc.ae": "ADNOC",
+    "careers.aramco.com": "Saudi Aramco",
+    "careers.qatarenergy.qa": "QatarEnergy",
+    "jobs.smartrecruiters.com": "SmartRecruiters-hosted employer",
+    "jobs.lever.co": "Lever-hosted employer",
+    "boards.greenhouse.io": "Greenhouse-hosted employer"
+  },
+  "extra_queries": [
+    "\"piping engineer\" \"send CV\" (UAE OR Saudi OR Qatar OR Oman OR India)",
+    "\"E3D piping designer\" (hiring OR vacancy OR careers) (Mumbai OR Middle East)",
+    "\"piping design checker\" (job OR vacancy) (India OR Middle East)"
+  ]
+}
