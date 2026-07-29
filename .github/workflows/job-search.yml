@@ -7,6 +7,7 @@ on:
   pull_request:
     paths:
       - "scripts/find_jobs.py"
+      - "scripts/run_job_search.py"
       - "job_search_config.json"
       - ".github/workflows/job-search.yml"
       - "profile.json"
@@ -14,6 +15,7 @@ on:
     branches: [main]
     paths:
       - "scripts/find_jobs.py"
+      - "scripts/run_job_search.py"
       - "job_search_config.json"
       - ".github/workflows/job-search.yml"
       - "profile.json"
@@ -39,11 +41,11 @@ jobs:
           python-version: "3.12"
 
       - name: Compile job finder
-        run: python -m py_compile scripts/find_jobs.py
+        run: python -m py_compile scripts/find_jobs.py scripts/run_job_search.py
 
       - name: Search current openings and public recruiting emails
         run: |
-          python scripts/find_jobs.py \
+          python scripts/run_job_search.py \
             --config job_search_config.json \
             --profile profile.json \
             --output-dir job-results \
