@@ -1,0 +1,97 @@
+name: Find piping jobs and public recruiting emails
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 3 * * *" # 09:00 Asia/Kolkata
+  pull_request:
+    paths:
+      - "scripts/find_jobs.py"
+      - "job_search_config.json"
+      - ".github/workflows/job-search.yml"
+      - "profile.json"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/find_jobs.py"
+      - "job_search_config.json"
+      - ".github/workflows/job-search.yml"
+      - "profile.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: piping-job-search-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile job finder
+        run: python -m py_compile scripts/find_jobs.py
+
+      - name: Search current openings and public recruiting emails
+        run: |
+          python scripts/find_jobs.py \
+            --config job_search_config.json \
+            --profile profile.json \
+            --output-dir job-results \
+            --report proof/job-search-report.json
+
+      - name: Validate evidence files
+        run: |
+          python - <<'PY'
+          import csv, json
+          from pathlib import Path
+
+          required = [
+              Path("job-results/latest_jobs.json"),
+              Path("job-results/latest_jobs.csv"),
+              Path("job-results/latest_job_emails.csv"),
+              Path("job-results/latest_jobs.md"),
+              Path("proof/job-search-report.json"),
+          ]
+          for path in required:
+              assert path.is_file() and path.stat().st_size > 0, f"missing/empty: {path}"
+
+          jobs = json.loads(required[0].read_text(encoding="utf-8"))
+          report = json.loads(required[-1].read_text(encoding="utf-8"))
+          assert report["status"] == "PASS", report
+          assert jobs["job_count"] == len(jobs["jobs"])
+          with required[1].open(encoding="utf-8-sig", newline="") as handle:
+              list(csv.DictReader(handle))
+          print(json.dumps(report, indent=2))
+          PY
+
+      - name: Upload job-search evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: piping-job-search-${{ github.run_id }}
+          path: |
+            job-results/
+            proof/job-search-report.json
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Publish latest results to main
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add job-results proof/job-search-report.json
+          git diff --cached --quiet && exit 0
+          git commit -m "jobs: refresh piping openings and recruiting emails [skip ci]"
+          git push origin HEAD:main
