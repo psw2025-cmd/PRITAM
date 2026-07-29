@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "generated_at_utc": "2026-07-29T07:18:17.011076+00:00",
+  "queries_attempted": 20,
+  "queries_succeeded": 20,
+  "query_failures": [],
+  "relevant_leads": 2,
+  "official_career_site_leads": 0,
+  "job_board_leads": 0,
+  "leads_with_public_recruiting_email": 2,
+  "outputs": [
+    "job-results/latest_jobs.json",
+    "job-results/latest_jobs.csv",
+    "job-results/latest_job_emails.csv",
+    "job-results/latest_jobs.md"
+  ],
+  "raw_search_leads": 2,
+  "strict_live_hits": 0,
+  "source_verified_hits": 8,
+  "final_evidence_backed_leads": 8,
+  "rejected_weak_hits": [
+    {
+      "title": "AVEVA E3D Design is now part of AVEVA Unified Engineering",
+      "url": "https://www.aveva.com/en/info/e3d-transition/",
+      "reason": "known informational/training domain"
+    },
+    {
+      "title": "Aveva E3D Tutorials - YouTube",
+      "url": "https://www.youtube.com/@AvevaE3D_01/videos",
+      "reason": "known informational/training domain"
+    }
+  ],
+  "skipped_verified_entries": [],
+  "quality_gate": "PASS"
+}
