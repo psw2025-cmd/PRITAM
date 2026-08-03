@@ -1,10 +1,10 @@
 {
   "status": "PASS",
-  "generated_at_utc": "2026-08-02T04:39:50.577849+00:00",
+  "generated_at_utc": "2026-08-03T04:43:07.177595+00:00",
   "queries_attempted": 20,
   "queries_succeeded": 20,
   "query_failures": [],
-  "relevant_leads": 0,
+  "relevant_leads": 3,
   "official_career_site_leads": 0,
   "job_board_leads": 0,
   "leads_with_public_recruiting_email": 2,
@@ -14,11 +14,27 @@
     "job-results/latest_job_emails.csv",
     "job-results/latest_jobs.md"
   ],
-  "raw_search_leads": 0,
+  "raw_search_leads": 3,
   "strict_live_hits": 0,
   "source_verified_hits": 8,
   "final_evidence_backed_leads": 8,
-  "rejected_weak_hits": [],
+  "rejected_weak_hits": [
+    {
+      "title": "AVEVA E3D Design",
+      "url": "https://www.aveva.com/content/dam/aveva/documents/perspectives/datasheets/Datasheet_E3DDesign.pdf.coredownload.inline.pdf",
+      "reason": "known informational/training domain"
+    },
+    {
+      "title": "ESS RACEWAY DESIGN AND CABLE ROUTING USING AVEVA E3D",
+      "url": "https://instrumentengineers.org/wp-content/uploads/2023/09/14-06-v-ess-raceway-design-and-cable-routing-using-aveva-e3d.pdf",
+      "reason": "source is not an official career page or job-detail page"
+    },
+    {
+      "title": "AVEVA E3D Design - Servo",
+      "url": "https://www.servo.com.sg/sites/default/files/2024-02/Brochure_AVEVA_E3DDesign_24-01.pdf",
+      "reason": "source is not an official career page or job-detail page"
+    }
+  ],
   "skipped_verified_entries": [],
   "quality_gate": "PASS"
 }
