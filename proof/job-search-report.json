@@ -1,10 +1,10 @@
 {
   "status": "PASS",
-  "generated_at_utc": "2026-08-05T04:37:45.734394+00:00",
+  "generated_at_utc": "2026-08-06T04:37:32.813780+00:00",
   "queries_attempted": 20,
   "queries_succeeded": 20,
   "query_failures": [],
-  "relevant_leads": 6,
+  "relevant_leads": 5,
   "official_career_site_leads": 0,
   "job_board_leads": 0,
   "leads_with_public_recruiting_email": 2,
@@ -14,7 +14,7 @@
     "job-results/latest_job_emails.csv",
     "job-results/latest_jobs.md"
   ],
-  "raw_search_leads": 6,
+  "raw_search_leads": 5,
   "strict_live_hits": 0,
   "source_verified_hits": 8,
   "final_evidence_backed_leads": 8,
@@ -33,11 +33,6 @@
       "title": "What is Piping - engineersnotebook.com",
       "url": "https://engineersnotebook.com/what-is-piping/",
       "reason": "source is not an official career page or job-detail page"
-    },
-    {
-      "title": "Differences Between SP3D and E3D in Engineering Design: E3D vs SP3D",
-      "url": "https://whatispiping.com/differences-sp3d-vs-e3d/",
-      "reason": "known informational/training domain"
     },
     {
       "title": "Piping Engineering Basics | Piping System Explained | Learn Piping from ...",
