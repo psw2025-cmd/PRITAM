@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "generated_at_utc": "2026-08-10T04:10:44.194130+00:00",
+  "generated_at_utc": "2026-08-11T04:03:56.967730+00:00",
   "queries_attempted": 20,
   "queries_succeeded": 20,
   "query_failures": [],
@@ -20,9 +20,14 @@
   "final_evidence_backed_leads": 8,
   "rejected_weak_hits": [
     {
-      "title": "What Is Piping? Standards And Application Of Piping. - Piping ...",
-      "url": "https://pipingtechs.com/what-is-a-piping/",
+      "title": "The Piping Engineering World – Piping Articles and Tools by Jitendra Surve.",
+      "url": "https://www.pipingengineer.org/",
       "reason": "source is not an official career page or job-detail page"
+    },
+    {
+      "title": "AVEVA™ E3D Design",
+      "url": "https://www.aveva.com/en/products/e3d-design/",
+      "reason": "known informational/training domain"
     },
     {
       "title": "What Is Piping? Complete Beginner Guide to Piping Engineering",
@@ -35,19 +40,14 @@
       "reason": "known informational/training domain"
     },
     {
-      "title": "Engineering design software - AVEVA",
-      "url": "https://www.aveva.com/en/solutions/engineering/engineering-and-design/",
-      "reason": "title lacks target piping/E3D role"
+      "title": "Piping - Wikipedia",
+      "url": "https://en.m.wikipedia.org/wiki/Piping",
+      "reason": "source is not an official career page or job-detail page"
     },
     {
       "title": "What is Piping - engineersnotebook.com",
       "url": "https://engineersnotebook.com/what-is-piping/",
       "reason": "source is not an official career page or job-detail page"
-    },
-    {
-      "title": "Aveva E3D Tutorials - YouTube",
-      "url": "https://www.youtube.com/@AvevaE3D_01/videos",
-      "reason": "known informational/training domain"
     }
   ],
   "skipped_verified_entries": [],
