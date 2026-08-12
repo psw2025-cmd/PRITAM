@@ -1,10 +1,10 @@
 {
   "status": "PASS",
-  "generated_at_utc": "2026-08-11T04:03:56.967730+00:00",
+  "generated_at_utc": "2026-08-12T04:16:26.506682+00:00",
   "queries_attempted": 20,
   "queries_succeeded": 20,
   "query_failures": [],
-  "relevant_leads": 6,
+  "relevant_leads": 3,
   "official_career_site_leads": 0,
   "job_board_leads": 0,
   "leads_with_public_recruiting_email": 2,
@@ -14,34 +14,19 @@
     "job-results/latest_job_emails.csv",
     "job-results/latest_jobs.md"
   ],
-  "raw_search_leads": 6,
+  "raw_search_leads": 3,
   "strict_live_hits": 0,
   "source_verified_hits": 8,
   "final_evidence_backed_leads": 8,
   "rejected_weak_hits": [
     {
-      "title": "The Piping Engineering World – Piping Articles and Tools by Jitendra Surve.",
-      "url": "https://www.pipingengineer.org/",
+      "title": "What Is Piping? Standards And Application Of Piping. - Piping ...",
+      "url": "https://pipingtechs.com/what-is-a-piping/",
       "reason": "source is not an official career page or job-detail page"
-    },
-    {
-      "title": "AVEVA™ E3D Design",
-      "url": "https://www.aveva.com/en/products/e3d-design/",
-      "reason": "known informational/training domain"
     },
     {
       "title": "What Is Piping? Complete Beginner Guide to Piping Engineering",
       "url": "https://mypipingnotes.com/what-is-piping/",
-      "reason": "source is not an official career page or job-detail page"
-    },
-    {
-      "title": "Differences Between SP3D and E3D in Engineering Design: E3D vs SP3D",
-      "url": "https://whatispiping.com/differences-sp3d-vs-e3d/",
-      "reason": "known informational/training domain"
-    },
-    {
-      "title": "Piping - Wikipedia",
-      "url": "https://en.m.wikipedia.org/wiki/Piping",
       "reason": "source is not an official career page or job-detail page"
     },
     {
