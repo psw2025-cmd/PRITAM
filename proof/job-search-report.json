@@ -1,12 +1,12 @@
 {
   "status": "PASS",
-  "generated_at_utc": "2026-08-21T03:50:18.456264+00:00",
+  "generated_at_utc": "2026-08-22T03:48:24.909913+00:00",
   "queries_attempted": 20,
   "queries_succeeded": 20,
   "query_failures": [],
-  "relevant_leads": 8,
+  "relevant_leads": 10,
   "official_career_site_leads": 0,
-  "job_board_leads": 0,
+  "job_board_leads": 1,
   "leads_with_public_recruiting_email": 2,
   "outputs": [
     "job-results/latest_jobs.json",
@@ -14,14 +14,34 @@
     "job-results/latest_job_emails.csv",
     "job-results/latest_jobs.md"
   ],
-  "raw_search_leads": 8,
+  "raw_search_leads": 10,
   "strict_live_hits": 0,
   "source_verified_hits": 8,
   "final_evidence_backed_leads": 8,
   "rejected_weak_hits": [
     {
+      "title": "E3D - LinkedIn",
+      "url": "https://www.linkedin.com/company/e3d-online",
+      "reason": "job-board result does not point to a job-detail path"
+    },
+    {
+      "title": "What Is Piping? Complete Beginner Guide to Piping Engineering",
+      "url": "https://mypipingnotes.com/what-is-piping/",
+      "reason": "source is not an official career page or job-detail page"
+    },
+    {
       "title": "What is Piping - engineersnotebook.com",
       "url": "https://engineersnotebook.com/what-is-piping/",
+      "reason": "source is not an official career page or job-detail page"
+    },
+    {
+      "title": "Process Piping Fundamentals, Codes and Standards",
+      "url": "https://www.cedengineering.com/userfiles/Process%20Piping%20Fundamentals,%20Codes%20and%20Standards%20%20-%20Module%201.pdf",
+      "reason": "source is not an official career page or job-detail page"
+    },
+    {
+      "title": "Piping Engineering Fundamentals - Key Concepts & Terms",
+      "url": "https://edanbrook.com/blog/fundamentals-of-piping-engineering-key-concepts-and-terminology.html",
       "reason": "source is not an official career page or job-detail page"
     },
     {
@@ -30,14 +50,9 @@
       "reason": "known informational/training domain"
     },
     {
-      "title": "What Is Piping? Complete Beginner Guide to Piping Engineering",
-      "url": "https://mypipingnotes.com/what-is-piping/",
-      "reason": "source is not an official career page or job-detail page"
-    },
-    {
-      "title": "The Piping Engineering World – Piping Articles and Tools by Jitendra Surve.",
-      "url": "https://www.pipingengineer.org/",
-      "reason": "source is not an official career page or job-detail page"
+      "title": "Piping Design Basics – What Is Piping",
+      "url": "https://whatispiping.com/category/piping-design-and-layout/",
+      "reason": "known informational/training domain"
     },
     {
       "title": "Engineering design software - AVEVA",
@@ -47,11 +62,6 @@
     {
       "title": "Differences Between SP3D and E3D in Engineering Design: E3D vs SP3D",
       "url": "https://whatispiping.com/differences-sp3d-vs-e3d/",
-      "reason": "known informational/training domain"
-    },
-    {
-      "title": "Aveva E3D Tutorials - YouTube",
-      "url": "https://www.youtube.com/@AvevaE3D_01/videos",
       "reason": "known informational/training domain"
     },
     {
