@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "generated_at_utc": "2026-08-23T03:50:00.162065+00:00",
+  "generated_at_utc": "2026-08-24T03:50:26.134204+00:00",
   "queries_attempted": 20,
   "queries_succeeded": 20,
   "query_failures": [],
@@ -35,6 +35,11 @@
       "reason": "known informational/training domain"
     },
     {
+      "title": "What Is Piping – A Blog to learn Piping, Mechanical, and Process ...",
+      "url": "https://whatispiping.com/",
+      "reason": "known informational/training domain"
+    },
+    {
       "title": "What Is Piping? Complete Beginner Guide to Piping Engineering",
       "url": "https://mypipingnotes.com/what-is-piping/",
       "reason": "source is not an official career page or job-detail page"
@@ -42,11 +47,6 @@
     {
       "title": "What is Piping - engineersnotebook.com",
       "url": "https://engineersnotebook.com/what-is-piping/",
-      "reason": "source is not an official career page or job-detail page"
-    },
-    {
-      "title": "What Is Piping? Standards And Application Of Piping. - Piping ...",
-      "url": "https://pipingtechs.com/what-is-a-piping/",
       "reason": "source is not an official career page or job-detail page"
     }
   ],
