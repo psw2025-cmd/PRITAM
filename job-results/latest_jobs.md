@@ -1,6 +1,6 @@
 # Latest piping job leads
 
-Generated: `2026-09-01T03:43:09.999537+00:00`
+Generated: `2026-09-02T03:42:25.514652+00:00`
 
 - Evidence-backed leads: **8**
 - Confirmed/source-verified register leads: **8**
