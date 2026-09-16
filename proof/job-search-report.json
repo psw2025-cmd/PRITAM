@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "generated_at_utc": "2026-09-15T03:42:01.201950+00:00",
+  "generated_at_utc": "2026-09-16T03:41:54.556895+00:00",
   "queries_attempted": 20,
   "queries_succeeded": 20,
   "query_failures": [],
@@ -20,8 +20,8 @@
   "final_evidence_backed_leads": 8,
   "rejected_weak_hits": [
     {
-      "title": "What Is Piping? Standards And Application Of Piping. - Piping ...",
-      "url": "https://pipingtechs.com/what-is-a-piping/",
+      "title": "Piping - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Piping",
       "reason": "source is not an official career page or job-detail page"
     },
     {
