@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "generated_at_utc": "2026-10-25T08:40:51.112942+00:00",
+  "generated_at_utc": "2026-10-26T09:17:27.613244+00:00",
   "queries_attempted": 20,
   "queries_succeeded": 20,
   "query_failures": [],
@@ -40,19 +40,19 @@
       "reason": "source is not an official career page or job-detail page"
     },
     {
-      "title": "Piping - Wikipedia",
-      "url": "https://en.m.wikipedia.org/wiki/Piping",
-      "reason": "source is not an official career page or job-detail page"
-    },
-    {
       "title": "What is Piping - engineersnotebook.com",
       "url": "https://engineersnotebook.com/what-is-piping/",
       "reason": "source is not an official career page or job-detail page"
     },
     {
-      "title": "What Is Piping – A Blog to learn Piping, Mechanical, and Process ...",
-      "url": "https://whatispiping.com/",
+      "title": "Piping Design Basics – What Is Piping",
+      "url": "https://whatispiping.com/category/piping-design-and-layout/",
       "reason": "known informational/training domain"
+    },
+    {
+      "title": "What Is Piping? Standards And Application Of Piping. - Piping ...",
+      "url": "https://pipingtechs.com/what-is-a-piping/",
+      "reason": "source is not an official career page or job-detail page"
     }
   ],
   "skipped_verified_entries": [],
