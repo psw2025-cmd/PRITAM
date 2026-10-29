@@ -1,11 +1,11 @@
 # Latest piping job leads
 
-Generated: `2026-10-28T09:58:44.828529+00:00`
+Generated: `2026-10-29T10:20:40.696280+00:00`
 
 - Evidence-backed leads: **8**
 - Confirmed/source-verified register leads: **8**
 - Strict live-search additions: **0**
-- Weak search hits rejected: **5**
+- Weak search hits rejected: **3**
 - Leads with a public application/recruiting email: **2**
 
 > Apply only after reopening the source. A status of `verify_before_applying` means the email was publicly posted, but the vacancy must be reconfirmed before sending personal documents.
