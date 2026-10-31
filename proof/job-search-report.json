@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "generated_at_utc": "2026-10-30T10:22:59.672023+00:00",
+  "generated_at_utc": "2026-10-31T09:54:43.238851+00:00",
   "queries_attempted": 20,
   "queries_succeeded": 20,
   "query_failures": [],
@@ -30,14 +30,14 @@
       "reason": "source is not an official career page or job-detail page"
     },
     {
-      "title": "What Is Piping? Complete Beginner Guide to Piping Engineering",
-      "url": "https://mypipingnotes.com/what-is-piping/",
-      "reason": "source is not an official career page or job-detail page"
-    },
-    {
       "title": "AVEVA E3D Design engineering software",
       "url": "https://www.aveva.com/en/products/e3d-design/",
       "reason": "known informational/training domain"
+    },
+    {
+      "title": "What Is Piping? Complete Beginner Guide to Piping Engineering",
+      "url": "https://mypipingnotes.com/what-is-piping/",
+      "reason": "source is not an official career page or job-detail page"
     },
     {
       "title": "What Is Piping? Standards And Application Of Piping. - Piping ...",
