@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "generated_at_utc": "2026-11-23T13:31:51.645043+00:00",
+  "generated_at_utc": "2026-11-24T14:08:27.172706+00:00",
   "queries_attempted": 20,
   "queries_succeeded": 20,
   "query_failures": [],
@@ -25,14 +25,9 @@
       "reason": "job-board result does not point to a job-detail path"
     },
     {
-      "title": "What Is Piping – A Blog to learn Piping, Mechanical, and Process ...",
-      "url": "https://whatispiping.com/",
+      "title": "Piping Design Basics – What Is Piping",
+      "url": "https://whatispiping.com/category/piping-design-and-layout/",
       "reason": "known informational/training domain"
-    },
-    {
-      "title": "Piping Design Simplified — Learn Piping Engineering Online",
-      "url": "https://pipingdesignsimplified.com/",
-      "reason": "source is not an official career page or job-detail page"
     },
     {
       "title": "Explore the World of Piping",
@@ -45,8 +40,8 @@
       "reason": "known informational/training domain"
     },
     {
-      "title": "Piping Design Basics – What Is Piping",
-      "url": "https://whatispiping.com/category/piping-design-and-layout/",
+      "title": "AVEVA E3D Design is now part of AVEVA Unified Engineering",
+      "url": "https://www.aveva.com/en/info/e3d-transition/",
       "reason": "known informational/training domain"
     },
     {
@@ -55,9 +50,14 @@
       "reason": "source is not an official career page or job-detail page"
     },
     {
-      "title": "What is Piping - The Engineers Notebook",
-      "url": "https://engineersnotebook.com/what-is-piping/",
-      "reason": "source is not an official career page or job-detail page"
+      "title": "The Piping Engineer - YouTube",
+      "url": "https://www.youtube.com/@ThePipingEngineer",
+      "reason": "known informational/training domain"
+    },
+    {
+      "title": "Piping Engineering Basics | Piping System Explained | Learn Piping from ...",
+      "url": "https://www.youtube.com/watch?v=cdvnVWxiqWI",
+      "reason": "known informational/training domain"
     }
   ],
   "skipped_verified_entries": [],
