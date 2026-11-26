@@ -1,12 +1,12 @@
 {
   "status": "PASS",
-  "generated_at_utc": "2026-11-25T13:20:52.384331+00:00",
+  "generated_at_utc": "2026-11-26T13:00:12.859536+00:00",
   "queries_attempted": 20,
   "queries_succeeded": 20,
   "query_failures": [],
   "relevant_leads": 4,
   "official_career_site_leads": 0,
-  "job_board_leads": 0,
+  "job_board_leads": 1,
   "leads_with_public_recruiting_email": 2,
   "outputs": [
     "job-results/latest_jobs.json",
@@ -20,13 +20,13 @@
   "final_evidence_backed_leads": 8,
   "rejected_weak_hits": [
     {
-      "title": "Engineering design software solutions - AVEVA",
-      "url": "https://www.aveva.com/en/solutions/engineering/engineering-and-design/",
-      "reason": "title lacks target piping/E3D role"
+      "title": "E3D - LinkedIn",
+      "url": "https://www.linkedin.com/company/e3d-online",
+      "reason": "job-board result does not point to a job-detail path"
     },
     {
-      "title": "What Is Piping? Complete Beginner Guide to Piping Engineering",
-      "url": "https://mypipingnotes.com/what-is-piping/",
+      "title": "Piping Design Simplified — Learn Piping Engineering Online",
+      "url": "https://pipingdesignsimplified.com/",
       "reason": "source is not an official career page or job-detail page"
     },
     {
@@ -35,8 +35,8 @@
       "reason": "known informational/training domain"
     },
     {
-      "title": "What is Piping - The Engineers Notebook",
-      "url": "https://engineersnotebook.com/what-is-piping/",
+      "title": "What Is Piping? Complete Beginner Guide to Piping Engineering",
+      "url": "https://mypipingnotes.com/what-is-piping/",
       "reason": "source is not an official career page or job-detail page"
     }
   ],
