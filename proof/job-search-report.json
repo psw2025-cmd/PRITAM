@@ -1,12 +1,12 @@
 {
   "status": "PASS",
-  "generated_at_utc": "2026-11-26T13:00:12.859536+00:00",
+  "generated_at_utc": "2026-11-27T12:58:21.750539+00:00",
   "queries_attempted": 20,
   "queries_succeeded": 20,
   "query_failures": [],
   "relevant_leads": 4,
   "official_career_site_leads": 0,
-  "job_board_leads": 1,
+  "job_board_leads": 0,
   "leads_with_public_recruiting_email": 2,
   "outputs": [
     "job-results/latest_jobs.json",
@@ -20,23 +20,23 @@
   "final_evidence_backed_leads": 8,
   "rejected_weak_hits": [
     {
-      "title": "E3D - LinkedIn",
-      "url": "https://www.linkedin.com/company/e3d-online",
-      "reason": "job-board result does not point to a job-detail path"
-    },
-    {
-      "title": "Piping Design Simplified — Learn Piping Engineering Online",
-      "url": "https://pipingdesignsimplified.com/",
+      "title": "Explore the World of Piping",
+      "url": "https://www.wermac.org/index.html",
       "reason": "source is not an official career page or job-detail page"
-    },
-    {
-      "title": "AVEVA E3D Design engineering software",
-      "url": "https://www.aveva.com/en/products/e3d-design/",
-      "reason": "known informational/training domain"
     },
     {
       "title": "What Is Piping? Complete Beginner Guide to Piping Engineering",
       "url": "https://mypipingnotes.com/what-is-piping/",
+      "reason": "source is not an official career page or job-detail page"
+    },
+    {
+      "title": "What Is Piping – A Blog to learn Piping, Mechanical, and Process ...",
+      "url": "https://whatispiping.com/",
+      "reason": "known informational/training domain"
+    },
+    {
+      "title": "What is Piping - The Engineers Notebook",
+      "url": "https://engineersnotebook.com/what-is-piping/",
       "reason": "source is not an official career page or job-detail page"
     }
   ],
